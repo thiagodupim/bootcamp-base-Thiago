@@ -1,10 +1,7 @@
-@model Tarefas.Web.Models.Tarefa
+@model Tarefas.Web.Models.TarefaViewModel
 
 <form asp-action="Update">
-
-    <input asp-for="Id" hidden>
-    <input asp-for="Concluida" hidden>
-
+        
     <div class="form-group">
         <label asp-for="Titulo">@Html.DisplayNameFor(model => model.Titulo)</label>
         @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control" })
@@ -17,9 +14,14 @@
 
     <div class="form-group">
         <label asp-for="Concluida">@Html.DisplayNameFor(model => model.Concluida)</label>
-        @Html.TextAreaFor(model => model.Concluida, new { @class = "form-control" })
+        @Html.TextBoxFor(model => model.Concluida, new { @class = "form-control" })
     </div>
         
     <input type="submit" class="btn btn-primary" value="Atualizar" />
+        
+</form>
 
+<form asp- action="Update">
+    <input asp- for= "Id" hidden/>
+    <input asp- for= "Concluida" hidden/>
 </form>
