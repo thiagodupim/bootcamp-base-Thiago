@@ -2,17 +2,21 @@ using Microsoft.AspNetCore.Mvc;
 using Tarefas.Web.Models;
 using Tarefas.DTO;
 using Tarefas.DAO;
+using AutoMapper;
 
 namespace Tarefas.Web.Controllers
 {
     public class TarefaController : Controller
     {
-        private readonly ITarefaDAO _tarefaDAO;
         public List<TarefaViewModel> listaDeTarefas { get; set; }
 
-        public TarefaController(ITarefaDAO tarefaDAO)
+        private readonly ITarefaDAO _tarefaDAO;
+        private readonly IMapper _mapper;
+
+        public TarefaController(ITarefaDAO tarefaDAO, IMapper mapper)
         {
             _tarefaDAO = tarefaDAO;
+            _mapper = mapper;
         }
         
         public IActionResult Details(int id)
@@ -65,12 +69,7 @@ namespace Tarefas.Web.Controllers
                 return View();
             }
 
-            var tarefaDTO = new TarefaDTO 
-            {
-                Titulo = tarefa.Titulo,
-                Descricao = tarefa.Descricao,
-                Concluida = tarefa.Concluida
-            };
+            var tarefaDTO = _mapper.Map<TarefaDTO>(tarefa);
 
             _tarefaDAO.Criar(tarefaDTO);
 
@@ -101,13 +100,7 @@ namespace Tarefas.Web.Controllers
                 return View();
             }
 
-            var tarefaDTO = new TarefaDTO 
-            {
-                Id = tarefa.Id,
-                Titulo = tarefa.Titulo,
-                Descricao = tarefa.Descricao,
-                Concluida = tarefa.Concluida
-            };
+            var tarefaDTO = _mapper.Map<TarefaDTO>(tarefa);
 
             _tarefaDAO.Atualizar(tarefaDTO);
 
