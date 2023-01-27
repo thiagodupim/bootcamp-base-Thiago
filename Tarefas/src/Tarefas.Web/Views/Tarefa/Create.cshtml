@@ -1,11 +1,18 @@
 @model Tarefas.Web.Models.TarefaViewModel
 
-<form asp-action="Create">
-    @* <div asp-validation- summary="ModelState" class="form-group"> *@
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<form asp-action="Create">    
+    @Html.ValidationSummary()
+
     <div class="form-group">
         <label asp-for="Titulo">@Html.DisplayNameFor(model => model.Titulo)</label>
         @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control" })
-        @* <span asp-validation- for="Titulo" class="form-group"></span> *@
     </div>
 
     <div class="form-group">
