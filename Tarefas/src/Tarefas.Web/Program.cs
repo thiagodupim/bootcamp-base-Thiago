@@ -15,7 +15,6 @@ IMapper mapper = config.CreateMapper();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-//Classes DAO
 builder.Services.AddTransient<ITarefaDAO, TarefaDAO>();
 builder.Services.AddSingleton(mapper);
 
