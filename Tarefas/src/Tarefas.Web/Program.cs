@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 //Classes DAO
-builder.Services.AddTransient<TarefaDAO>();
+builder.Services.AddTransient<ITarefaDAO, TarefaDAO>();
 
 var app = builder.Build();
 

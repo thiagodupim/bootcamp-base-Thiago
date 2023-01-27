@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Tarefas.DAO
 {
-    public class TarefaDAO
+    public class TarefaDAO : ITarefaDAO
     {
         private string DataSourceFile => Environment.CurrentDirectory + "AppTarefasDB.sqlite";
         public SQLiteConnection Connection => new SQLiteConnection("DataSource="+ DataSourceFile);
